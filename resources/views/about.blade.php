@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="h-[75vh] w-full bg-[#F4EDE9] flex flex-col justify-center items-center">
+    <div class="h-[75vh] w-full bg-creme flex flex-col justify-center items-center">
         <img class="h-44 w-60" src={{url('/images/logo.png')}} draggable="false">
         <h1 class="text-7xl text-gray-800 font-bold">About us</h1>
         <h2 class="text-4xl text-gray-800 font-bold">More about Folia and the team</h2>
@@ -8,7 +8,7 @@
     <div class="bg-[#FDE8B1] py-20 flex flex-col justify-center items-center">
         <div class="flex flex-col justify-center items-center px-16">
             <h3 class="text-4xl text-gray-800 font-bold">Who are we?</h3>
-            <p class="text-xl text-gray-800 pt-5 px-16">We are a Student company! Folia is brought into existence by
+            <p class="text-xl text-center text-gray-800 pt-5 px-16">We are a Student company! Folia is brought into existence by
                                                         seven international business students from HZ University of
                                                         Applied Sciences with the guidance of our coaches Ethiene
                                                         Veldhuis and Peter Wielemaker. The company will exist from April

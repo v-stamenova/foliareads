@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="h-[95vh] w-full bg-[#F4EDE9]">
+    <div class="h-[95vh] w-full bg-creme">
         <div class="grid grid-cols-2">
             <div class="py-5 pl-10 min-h-screen w-full flex flex-col justify-center items-center">
                 <div class="text-left">
@@ -38,7 +38,7 @@
             <p class="text-3xl text-gray-800 font-bold">Student pricing</p>
             <p class="text-xl text-gray-800">For students from students, you receive the perfect read for you after filling out a quiz!</p>
         </div>
-        <div class="bg-[#F4EDE9]  flex flex-col justify-center items-center pr-16">
+        <div class="bg-creme  flex flex-col justify-center items-center pr-16">
             <p class="text-5xl text-gray-900 font-bold">1.99€</p>
             <p class="text-xl text-gray-700">per month</p>
             <div class="pt-5">
