@@ -29,27 +29,29 @@ new class extends Component {
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" wire:navigate>
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('about')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')" wire:navigate>
                         {{ __('About us') }}
                     </x-nav-link>
                 </div>
             </div>
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <!-- Login and Register Links -->
-                <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                    {{ __('Login') }}
-                </x-nav-link>
-                <div class="pl-2">
-                    <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
-                        {{ __('Register') }}
+            @guest
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <!-- Login and Register Links -->
+                    <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                        {{ __('Login') }}
                     </x-nav-link>
+                    <div class="pl-2">
+                        <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                            {{ __('Register') }}
+                        </x-nav-link>
+                    </div>
                 </div>
-            </div>
+            @endguest
 
             <!-- Settings Dropdown -->
             @auth
@@ -75,6 +77,9 @@ new class extends Component {
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile')" wire:navigate>
                                 {{ __('Profile') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('dashboard')" wire:navigate>
+                                {{ __('My dashboard') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -107,8 +112,11 @@ new class extends Component {
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" wire:navigate>
+                {{ __('Home') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')" wire:navigate>
+                {{ __('About us') }}
             </x-responsive-nav-link>
         </div>
 
@@ -125,6 +133,9 @@ new class extends Component {
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('profile')" wire:navigate>
                         {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('dashboard')" wire:navigate>
+                        {{ __('My Dashboard') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
