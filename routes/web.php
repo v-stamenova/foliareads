@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
-Route::view('/about', 'about');
+Route::view('/', 'welcome')->name('welcome');
+Route::view('/about', 'about')->name('about');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
