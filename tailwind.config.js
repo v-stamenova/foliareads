@@ -14,6 +14,20 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                nikol: {
+                    50: '#f597ff',
+                    100: '#e688ff',
+                    200: '#d779f7',
+                    300: '#c86ae8',
+                    400: '#b95bd9',
+                    500: '#8C2EAC', // Base color
+                    600: '#6e108e',
+                    700: '#5f017f',
+                    800: '#500070',
+                    900: '#410061',
+                },
+            }
         },
     },
 

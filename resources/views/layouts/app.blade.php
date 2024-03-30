@@ -31,6 +31,12 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <footer class="footer mt-auto py-3 bg-white dark:bg-gray-800">
+                <p class="text-center text-muted dark:text-gray-200">
+                    © 2024 Student Company Folia
+                </p>
+            </footer>
         </div>
     </body>
 </html>
