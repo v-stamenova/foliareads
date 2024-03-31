@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quiz extends Model
+class Book extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['client_id'];
-
-    public function answers() {
-        return $this->hasMany(Answer::class);
+    public function recommendedBooks() {
+        return $this->hasMany(RecommendedBook::class);
     }
 }

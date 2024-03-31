@@ -10,4 +10,8 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = ['text', 'type'];
+
+    public function answers() {
+        return $this->hasMany(Answer::class);
+    }
 }

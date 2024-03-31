@@ -10,6 +10,8 @@ class Recommendation extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['client_id', 'admin_id', 'request_id'];
+
     public function client() {
         return $this->belongsTo(User::class, 'client_id');
     }
@@ -21,4 +23,9 @@ class Recommendation extends Model
     public function request() {
         return $this->belongsTo(RecommendationRequest::class, 'request_id');
     }
+
+    public function recommendedBooks() {
+        return $this->hasMany(RecommendedBook::class);
+    }
+
 }

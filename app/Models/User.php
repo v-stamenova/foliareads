@@ -66,4 +66,11 @@ class User extends Authenticatable
     public function recommendedByMe() {
         return $this->hasMany(Recommendation::class, 'admin_id');
     }
+
+    public function getRecommendedBooks()
+    {
+        return $this->recommendedToMe->flatMap(function ($recommendation) {
+            return $recommendation->recommendedBooks;
+        });
+    }
 }

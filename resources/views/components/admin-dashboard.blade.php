@@ -51,7 +51,7 @@
                                         {{$request->month}}
                                     </td>
                                     <td class="py-4 px-6">
-                                        <a href=""
+                                        <a href="{{route('recommend.create', $request)}}"
                                            class="py-1 px-2 border-2 text-md font-bold border-nikol-500
                                             bg-nikol-400 hover:bg-nikol-700 rounded text-white">Recommend books</a>
                                     </td>

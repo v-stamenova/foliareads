@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recommendation;
+use App\Models\RecommendationRequest;
+use App\Models\RecommendedBook;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecommendationController extends Controller
 {
@@ -18,17 +22,39 @@ class RecommendationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(RecommendationRequest $request)
     {
-        //
+        $user = User::find($request->client_id);
+        return view('recommend', compact('user', 'request'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store($request_id, Request $request)
     {
-        //
+        $validated = $request->validate([
+            'recommend' => 'required'
+        ]);
+
+        $recommendationRequest = RecommendationRequest::find($request_id);
+
+        $recommendation = Recommendation::create([
+            'client_id' => $recommendationRequest->client->id,
+            'admin_id' => Auth::user()->id,
+            'request_id' => $request_id
+        ]);
+
+        foreach ($validated as $value) {
+            foreach ($value as $book_id) {
+                RecommendedBook::create([
+                    'book_id' => $book_id,
+                    'recommendation_id' => $recommendation->id
+                ]);
+            }
+        }
+
+        return redirect(route('dashboard'))->with('status','Successfully recommended books');
     }
 
     /**
