@@ -13,6 +13,11 @@ class RecommendationRequest extends Model
 
     public function client()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'client_id');
+    }
+
+    public function recommendation()
+    {
+        return $this->hasOne(Recommendation::class, 'request_id');
     }
 }

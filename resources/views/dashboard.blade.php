@@ -13,5 +13,8 @@
         @role('client')
         <x-client-dashboard/>
         @endrole
+        @role('admin')
+        <x-admin-dashboard/>
+        @endrole
     </div>
 </x-app-layout>

@@ -23,9 +23,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'client']);
+
+        $user = User::factory()->create([
+            'name' => 'Nikol Grueva',
+            'email' => 'nikol@hz.nl',
+        ]);
+        $user->assignRole('admin');
 
         Question::create(
             ['text' => 'Uit welke historische periode moet het boek zijn?',

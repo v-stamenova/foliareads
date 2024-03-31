@@ -58,4 +58,12 @@ class User extends Authenticatable
     public function quiz() {
         return $this->hasOne(Quiz::class, 'client_id');
     }
+
+    public function recommendedToMe() {
+        return $this->hasMany(Recommendation::class, 'client_id');
+    }
+
+    public function recommendedByMe() {
+        return $this->hasMany(Recommendation::class, 'admin_id');
+    }
 }
