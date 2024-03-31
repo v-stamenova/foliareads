@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class RecommendationRequest extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['month', 'client_id'];
+
+    public function client()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

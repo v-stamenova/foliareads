@@ -8,46 +8,30 @@
                     <div class="overflow-x-auto relative pt-2">
                         <table class="w-full text-sm text-left text-gray-700 pr-5 text-base">
                             <tbody>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td class="py-4 px-6 text-base">
-                                    April payment
-                                </td>
-                                <td class="py-4 px-6">
-                                    1.99 €
-                                </td>
-                                <td>
-                                    <a href=""
-                                       class="py-1 px-3 border-2 text-sm border-nikol-500
-                                        bg-nikol-400 hover:bg-nikol-700 rounded text-white">Pay here</a>
-                                </td>
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td class="py-4 px-6 text-base">
-                                    May payment
-                                </td>
-                                <td class="py-4 px-6">
-                                    1.99 €
-                                </td>
-                                <td>
-                                    <a href=""
-                                       class="py-1 px-3 border-2 text-sm border-nikol-500
-                                        bg-nikol-400 hover:bg-nikol-700 rounded text-white">Pay here</a>
-                                </td>
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <td class="py-4 px-6 text-base">
-                                    June payment
-                                </td>
-                                <td class="py-4 px-6">
-                                    1.99 €
-                                </td>
-                                <td>
-                                    <a href=""
-                                       class="py-1 px-3 border-2 text-sm border-nikol-500
-                                        bg-nikol-400 hover:bg-nikol-700 rounded text-white">Pay here</a>
-                                </td>
-                            </tr>
-                            </tbody>
+                            @foreach(['April', 'May', 'June'] as $month)
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="py-4 px-6 text-base">
+                                        {{$month}} payment
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        1.99 €
+                                    </td>
+                                    <td>
+                                        @if(!Auth::user()->hasRequestedRecommendation($month))
+                                            <form action="{{route('payForMonth', $month)}}" method="POST">
+                                                @csrf
+                                                <x-primary-button class="ms-4 bg-nikol-500 hover:bg-nikol-700">
+                                                    {{ __('Pay') }}
+                                                </x-primary-button>
+                                            </form>
+                                        @else
+                                            <x-primary-button disabled class="ms-4">
+                                                Paid
+                                            </x-primary-button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
 

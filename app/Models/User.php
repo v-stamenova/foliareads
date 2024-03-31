@@ -45,4 +45,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function recommendationRequest()
+    {
+        return $this->hasMany(RecommendationRequest::class, 'client_id');
+    }
+
+    public function hasRequestedRecommendation($month){
+        return ($this->recommendationRequest->where('month', $month))->count() != 0;
+    }
 }
