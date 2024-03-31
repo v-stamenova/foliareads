@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function hasRequestedRecommendation($month){
         return ($this->recommendationRequest->where('month', $month))->count() != 0;
     }
+
+    public function quiz() {
+        return $this->hasOne(Quiz::class, 'client_id');
+    }
 }

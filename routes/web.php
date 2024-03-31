@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('welcome');
@@ -16,5 +17,10 @@ Route::view('profile', 'profile')
 
 Route::post('/payment/{month}', [PaymentController::class, 'payForMonth'])
     ->name('payForMonth');
+
+Route::get('/quiz', [QuizController::class, 'index'])
+    ->name('quiz.index');
+Route::post('/quiz', [QuizController::class, 'store'])
+    ->name('quiz.store');
 
 require __DIR__ . '/auth.php';
