@@ -49,10 +49,16 @@
                             @endforeach
                         </table>
                     </div>
-
                 </div>
-                <div>
-
+                <div class="pt-5">
+                    <h3 class="text-2xl py-3">Recommended books</h3>
+                    @if(is_null(Auth::user()->getRecommendedBooks()))
+                        <p>No books recommended yet</p>
+                    @else
+                        @foreach(Auth::user()->getRecommendedBooks() as $book)
+                            <p class="pb-2">{{$book->book->title}} - {{$book->book->author}}</p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

@@ -32,9 +32,9 @@
                             </div>
                             <div>
                                 <h2 class="text-2xl pl-3 text-nikol-600 py-4">Previously recommended</h2>
-                                @if(is_null($user->getRecommendedBooks()))
+                                @if($user->getRecommendedBooks())
                                     @foreach($user->getRecommendedBooks() as $book)
-                                        <p class="text-md pl-3 text-gray-800">{{$book->title}}</p>
+                                        <p class="text-md pl-3 text-gray-800">{{$book->book->title}} - {{$book->book->author}}</p>
                                     @endforeach
                                 @else
                                     <p class="text-md pl-3 text-gray-800">No previous recommendations</p>

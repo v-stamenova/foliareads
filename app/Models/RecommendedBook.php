@@ -15,7 +15,7 @@ class RecommendedBook extends Model
         return $this->belongsTo(Recommendation::class);
     }
 
-    public function books() {
+    public function book() {
         return $this->belongsTo(Book::class);
     }
 }
