@@ -1,0 +1,18 @@
+name: Check notification
+
+on:
+  push: {}
+  release: {}
+  issues:
+    types: [labeled, unlabeled, edited]
+
+jobs:
+  without_optional_params:
+    name: One with little info
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
