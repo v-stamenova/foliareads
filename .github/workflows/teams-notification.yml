@@ -7,21 +7,6 @@ on:
     types: [labeled, unlabeled, edited]
 
 jobs:
-  success:
-    name: One with everything
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@master
-      - name: Microsoft Teams Notification
-        uses: skitionek/notify-microsoft-teams@master
-        if: always()
-        with:
-          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
-          needs: ${{ toJson(needs) }}
-          job: ${{ toJson(job) }}
-          steps: ${{ toJson(steps) }}
-          dry_run: True
-
   without_optional_params:
     name: One with little info
     runs-on: ubuntu-18.04
@@ -29,6 +14,5 @@ jobs:
       - uses: actions/checkout@master
       - name: Microsoft Teams Notification
         uses: skitionek/notify-microsoft-teams@master
-        if: always()
         with:
           webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
