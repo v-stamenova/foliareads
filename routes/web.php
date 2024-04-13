@@ -16,9 +16,12 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::post('/payment/{month}', [PaymentController::class, 'payForMonth'])
+Route::post('payment/{month}',[PaymentController::Class,'preparePayment'])
     ->middleware(['auth', 'verified'])
-    ->name('payForMonth');
+    ->name('mollie.payment');
+Route::get('success/{month}',[PaymentController::Class, 'successfulPayment'])
+    ->middleware(['auth', 'verified'])
+    ->name('payment.success');
 
 Route::get('/quiz', [QuizController::class, 'index'])
     ->middleware(['auth', 'verified'])

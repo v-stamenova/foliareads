@@ -33,7 +33,7 @@
                                     </td>
                                     <td>
                                         @if(!Auth::user()->hasRequestedRecommendation($month))
-                                            <form action="{{route('payForMonth', $month)}}" method="POST">
+                                            <form action="{{route('mollie.payment', $month)}}" method="POST">
                                                 @csrf
                                                 <x-primary-button class="ms-4 bg-nikol-500 hover:bg-nikol-700">
                                                     {{ __('Pay') }}

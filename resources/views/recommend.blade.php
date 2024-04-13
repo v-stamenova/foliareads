@@ -23,12 +23,16 @@
                         <div>
                             <div>
                                 <h2 class="text-2xl pl-3 text-nikol-600 py-4">Answers from the quiz</h2>
-                                @foreach($user->quiz->answers as $answer)
-                                    <div class="pb-2">
-                                        <p class="text-xl pl-3 text-gray-800">{{$answer->question->text}}</p>
-                                        <p class="text-md pl-3 text-gray-800">{{$answer->answer}}</p>
-                                    </div>
-                                @endforeach
+                                @if($user->quiz)
+                                    @foreach($user->quiz->answers as $answer)
+                                        <div class="pb-2">
+                                            <p class="text-xl pl-3 text-gray-800">{{$answer->question->text}}</p>
+                                            <p class="text-md pl-3 text-gray-800">{{$answer->answer}}</p>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p class="text-md pl-3 text-gray-800">They haven't answered the quiz yet. Maybe you want to contact them?<br>The email is <b>{{$user->email}}</b></p>
+                                @endif
                             </div>
                             <div>
                                 <h2 class="text-2xl pl-3 text-nikol-600 py-4">Previously recommended</h2>
