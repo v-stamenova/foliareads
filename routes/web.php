@@ -17,16 +17,23 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::post('/payment/{month}', [PaymentController::class, 'payForMonth'])
+    ->middleware(['auth', 'verified'])
     ->name('payForMonth');
 
 Route::get('/quiz', [QuizController::class, 'index'])
+    ->middleware(['auth', 'verified'])
     ->name('quiz.index');
+
 Route::post('/quiz', [QuizController::class, 'store'])
+    ->middleware(['auth', 'verified'])
     ->name('quiz.store');
 
 Route::get('/recommend/{request}', [RecommendationController::class, 'create'])
+    ->middleware(['auth', 'verified'])
     ->name('recommend.create');
+
 Route::post('/recommend/{request_id}', [RecommendationController::class, 'store'])
+    ->middleware(['auth', 'verified'])
     ->name('recommend.store');
 
 require __DIR__ . '/auth.php';
