@@ -32,16 +32,22 @@
                                         1.99 €
                                     </td>
                                     <td>
-                                        @if(!Auth::user()->hasRequestedRecommendation($month))
-                                            <form action="{{route('mollie.payment', $month)}}" method="POST">
-                                                @csrf
-                                                <x-primary-button class="ms-4 bg-nikol-500 hover:bg-nikol-700">
-                                                    {{ __('Pay') }}
+                                        @if(!Str::startsWith(env('MOLLIE_KEY'), 'test'))
+                                            @if(!Auth::user()->hasRequestedRecommendation($month))
+                                                <form action="{{route('mollie.payment', $month)}}" method="POST">
+                                                    @csrf
+                                                    <x-primary-button class="ms-4 bg-nikol-500 hover:bg-nikol-700">
+                                                        {{ __('Pay') }}
+                                                    </x-primary-button>
+                                                </form>
+                                            @else
+                                                <x-primary-button disabled class="ms-4">
+                                                    Paid
                                                 </x-primary-button>
-                                            </form>
+                                            @endif
                                         @else
                                             <x-primary-button disabled class="ms-4">
-                                                Paid
+                                                Not open for payment
                                             </x-primary-button>
                                         @endif
                                     </td>
