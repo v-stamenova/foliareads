@@ -11,6 +11,10 @@ class PaymentController extends Controller
 {
     public function preparePayment($month)
     {
+        if(Auth::user()->hasRole('admin')) {
+            abort(403);
+        }
+
         if (!in_array($month, ['April', 'May', 'June'])) {
             return redirect(route('dashboard'));
         }
@@ -36,6 +40,6 @@ class PaymentController extends Controller
             'client_id' => Auth::user()->id
         ]);
 
-        return redirect(route('dashboard'))->with('status','Woahh');
+        return redirect(route('dashboard'))->with('status','You successfully paid for the month of ' . $month);
     }
 }

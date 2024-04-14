@@ -34,6 +34,10 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::user()->hasRole('admin')) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'q1' => 'required',
             'q2' => 'required',

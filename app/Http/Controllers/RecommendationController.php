@@ -24,6 +24,10 @@ class RecommendationController extends Controller
      */
     public function create(RecommendationRequest $request)
     {
+        if(Auth::user()->hasRole('client')) {
+            abort(403);
+        }
+
         $user = User::find($request->client_id);
         return view('recommend', compact('user', 'request'));
     }
@@ -33,6 +37,10 @@ class RecommendationController extends Controller
      */
     public function store($request_id, Request $request)
     {
+        if(Auth::user()->hasRole('client')) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'recommend' => 'required'
         ]);

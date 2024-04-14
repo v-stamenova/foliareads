@@ -1,7 +1,7 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg pl-3">
-            <h2 class="text-3xl text-gray-800 pl-4 pt-5">Welcome, {{Auth::user()->name}}!</h2>
+            <h2 class="text-3xl text-gray-800 dark:text-gray-200 pl-4 pt-5">Welcome, {{Auth::user()->name}}!</h2>
             @if(is_null(Auth::user()->quiz))
                 <div class="px-5">
                     <div class="bg-[#FDE8B1] rounded-lg my-5 py-7 px-5">
@@ -19,9 +19,9 @@
             @endif
             <div class="grid grid-cols-2">
                 <div class="pt-5">
-                    <h3 class="text-2xl pl-4">Remaining payments</h3>
+                    <h3 class="text-2xl pl-4 dark:text-gray-200">Remaining payments</h3>
                     <div class="overflow-x-auto relative pt-2">
-                        <table class="w-full text-sm text-left text-gray-700 pr-5 text-base">
+                        <table class="w-full text-sm text-left text-gray-700 dark:text-gray-200 pr-5 text-base">
                             <tbody>
                             @foreach(['April', 'May', 'June'] as $month)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -32,7 +32,7 @@
                                         1.99 €
                                     </td>
                                     <td>
-                                        @if(!Str::startsWith(env('MOLLIE_KEY'), 'test'))
+                                        @if(Str::startsWith(env('MOLLIE_KEY'), 'test'))
                                             @if(!Auth::user()->hasRequestedRecommendation($month))
                                                 <form action="{{route('mollie.payment', $month)}}" method="POST">
                                                     @csrf
@@ -56,10 +56,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="pt-5">
-                    <h3 class="text-2xl py-3">Recommended books</h3>
+                <div class="pt-5 dark:text-gray-200">
+                    <h3 class="text-2xl py-3 ">Recommended books</h3>
                     @if(is_null(Auth::user()->getRecommendedBooks()))
-                        <p>No books recommended yet</p>
+                        <p class="dark:text-gray-200">No books recommended yet</p>
                     @else
                         @foreach(Auth::user()->getRecommendedBooks() as $book)
                             <p class="pb-2">{{$book->book->title}} - {{$book->book->author}}</p>

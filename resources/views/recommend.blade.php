@@ -1,6 +1,6 @@
 @php use App\Models\Book; @endphp
 <x-app-layout>
-    <div class="bg-creme">
+    <div class="bg-creme dark:bg-gray-900">
         <x-slot name="header">
 
             @if (session('status'))
@@ -8,8 +8,8 @@
                     {{session('status')}}
                 </div>
             @endif
-            <h1 class="text-4xl pl-3 text-gray-800 font-bold">Recommend books to {{$user->name}}</h1>
-            <h2 class="text-2xl pl-3 text-gray-800">Now you need to recommend books to the client. You can find useful
+            <h1 class="text-4xl pl-3 text-gray-800 font-bold dark:text-gray-200">Recommend books to {{$user->name}}</h1>
+            <h2 class="text-2xl pl-3 text-gray-800 dark:text-gray-200">Now you need to recommend books to the client. You can find useful
                                                     information here to help you out.</h2>
             @if($errors->any())
                 {{ implode('', $errors->all('<div>:message</div>')) }}
@@ -22,31 +22,31 @@
                     <div class="grid grid-cols-2">
                         <div>
                             <div>
-                                <h2 class="text-2xl pl-3 text-nikol-600 py-4">Answers from the quiz</h2>
+                                <h2 class="text-2xl pl-3 text-nikol-600 py-4 dark:text-nikol-400">Answers from the quiz</h2>
                                 @if($user->quiz)
                                     @foreach($user->quiz->answers as $answer)
                                         <div class="pb-2">
-                                            <p class="text-xl pl-3 text-gray-800">{{$answer->question->text}}</p>
-                                            <p class="text-md pl-3 text-gray-800">{{$answer->answer}}</p>
+                                            <p class="text-xl pl-3 text-gray-800 dark:text-gray-200">{{$answer->question->text}}</p>
+                                            <p class="text-md pl-3 text-gray-800 dark:text-gray-400">{{$answer->answer}}</p>
                                         </div>
                                     @endforeach
                                 @else
-                                    <p class="text-md pl-3 text-gray-800">They haven't answered the quiz yet. Maybe you want to contact them?<br>The email is <b>{{$user->email}}</b></p>
+                                    <p class="text-md pl-3 text-gray-800 dark:text-gray-200">They haven't answered the quiz yet. Maybe you want to contact them?<br>The email is <b>{{$user->email}}</b></p>
                                 @endif
                             </div>
                             <div>
-                                <h2 class="text-2xl pl-3 text-nikol-600 py-4">Previously recommended</h2>
-                                @if($user->getRecommendedBooks())
+                                <h2 class="text-2xl pl-3 text-nikol-600 py-4 dark:text-nikol-400">Previously recommended</h2>
+                                @if(!is_null($user->getRecommendedBooks()))
                                     @foreach($user->getRecommendedBooks() as $book)
-                                        <p class="text-md pl-3 text-gray-800">{{$book->book->title}} - {{$book->book->author}}</p>
+                                        <p class="text-md pl-3 text-gray-800 dark:text-gray-200">{{$book->book->title}} - {{$book->book->author}}</p>
                                     @endforeach
                                 @else
-                                    <p class="text-md pl-3 text-gray-800">No previous recommendations</p>
+                                    <p class="text-md pl-3 text-gray-800 dark:text-gray-200">No previous recommendations</p>
                                 @endif
                             </div>
                         </div>
                         <div>
-                            <h2 class="text-2xl pl-3 text-nikol-600 py-4">Recommendations</h2>
+                            <h2 class="text-2xl pl-3 text-nikol-600 dark:text-nikol-400 py-4">Recommendations</h2>
                             <form method="POST" action="{{route('recommend.store', $request->id)}}">
                                 @csrf
                                 @foreach(Book::all() as $book)
@@ -54,7 +54,7 @@
                                         <input type="checkbox" name="recommend[]"
                                                value="{{$book->id}}"
                                                class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-nikol-600 shadow-sm focus:ring-nikol-500 dark:focus:ring-nikol-600 dark:focus:ring-offset-gray-800">
-                                        <label for="{{$book->id}}" class="pl-1 text-md">{{$book->title}}
+                                        <label for="{{$book->id}}" class="pl-1 dark:text-gray-200 text-md">{{$book->title}}
                                             - {{$book->author}}</label>
                                     </div>
                                 @endforeach

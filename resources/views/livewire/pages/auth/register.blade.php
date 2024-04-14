@@ -39,7 +39,7 @@ new #[Layout('layouts.app')] class extends Component {
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-creme dark:bg-gray-900">
     <img class="h-28 w-40" src={{url('/images/logo.png')}} draggable="false">
     <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-        <h1 class="text-4xl py-2 text-center text-gray-700 font-bold">Register</h1>
+        <h1 class="text-4xl py-2 text-center text-gray-700 dark:text-gray-200 font-bold">Register</h1>
 
         <form wire:submit="register">
             <!-- Name -->
